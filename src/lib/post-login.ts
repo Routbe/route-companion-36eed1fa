@@ -50,8 +50,8 @@ export async function resolvePostLoginPath(explicitRedirect?: string | null): Pr
     return destination;
   }
   if (handle === null) {
-    console.info("[post-login:destination] /claim");
-    return "/claim";
+    console.info("[post-login:destination] /onboarding");
+    return "/onboarding";
   }
   // Either genuinely no handle yet, or the profile could not be read at all:
   // onboarding is the safe landing spot — it shows the identity card when a

@@ -674,6 +674,12 @@ export const BLOCK_KINDS: {
     placeholder: "https://cal.com/jouwnaam/30min",
   },
   {
+    kind: "booking_request",
+    label: "Booking / Afspraak (ROUT native)",
+    category: "contact",
+    placeholder: "Plan een afspraak / gesprek",
+  },
+  {
     kind: "promo",
     label: "Promo / Featured link",
     category: "contact",
@@ -974,6 +980,7 @@ export function blockHref(block: ProfileBlock): string {
       return `https://etherscan.io/address/${raw}`;
     case "wifi":
     case "newsletter":
+    case "booking_request":
       return "";
     case "calendar":
       return raw.startsWith("http") ? raw : `https://${raw.replace(/^\/+/, "")}`;
@@ -992,7 +999,8 @@ export function blockHref(block: ProfileBlock): string {
 }
 
 /** Blokken die als interactieve widget renderen i.p.v. als gewone linkknop. */
-export const isWidgetBlock = (kind: string) => kind === "newsletter" || kind === "calendar";
+export const isWidgetBlock = (kind: string) =>
+  kind === "newsletter" || kind === "calendar" || kind === "booking_request";
 
 export const newBlockId = () =>
   `b_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;

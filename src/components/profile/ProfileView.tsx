@@ -7,6 +7,8 @@ import {
   PromoBlock,
   isBookingUrl,
 } from "@/components/profile/ProfileWidgets";
+import { BookingCard } from "@/components/profile/BookingCard";
+import { parseBookingConfig } from "@/lib/booking";
 import { SocialPlatformIcon } from "@/lib/social-icons";
 import { PLATFORM_LABEL, formatFollowers } from "@/lib/social-verify";
 import { FavoritesShowcase } from "@/components/profile/FavoritesShowcase";
@@ -61,7 +63,9 @@ export function ProfileView({
   const t = themeOf(profile.theme);
   const prefs = parseDisplayPrefs(profile.display_prefs);
   const blocks = profile.blocks.filter(
-    (b) => !b.hidden && (b.value.trim() !== "" || b.kind === "newsletter"),
+    (b) =>
+      !b.hidden &&
+      (b.value.trim() !== "" || b.kind === "newsletter" || b.kind === "booking_request"),
   );
   const buttonStyle = blockButtonStyle(profile.card_style, t);
   /** Eigen canvas- en patroonkleuren overschrijven het thema, indien gekozen. */
@@ -340,7 +344,14 @@ export function ProfileView({
                 accent={t.accent ?? t.border ?? "currentColor"}
               />
             ) : isWidgetBlock(b.kind) || isBookingUrl(blockHref(b)) ? (
-              b.kind === "newsletter" ? (
+              b.kind === "booking_request" ? (
+                <BookingCard
+                  key={b.id}
+                  handle={profile.username ?? ""}
+                  config={parseBookingConfig(b.value)}
+                  style={buttonStyle}
+                />
+              ) : b.kind === "newsletter" ? (
                 <NewsletterBlock
                   key={b.id}
                   handle={profile.username ?? ""}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BadgeCheck, Mail, UserPlus } from "lucide-react";
+import { BadgeCheck, Mail, UserPlus, Users } from "lucide-react";
 import { blockHref, isPromoBlock, isWidgetBlock, themeOf, type ProfileRecord } from "@/lib/profile";
 import {
   BookingBlock,
@@ -11,6 +11,7 @@ import { BookingCard } from "@/components/profile/BookingCard";
 import { parseBookingConfig } from "@/lib/booking";
 import { SocialPlatformIcon } from "@/lib/social-icons";
 import { PLATFORM_LABEL, formatFollowers } from "@/lib/social-verify";
+import { formatReach } from "@/lib/total-reach";
 import { FavoritesShowcase } from "@/components/profile/FavoritesShowcase";
 import { BadgeShowcase } from "@/components/profile/BadgeShowcase";
 import { VerifiedInfoDialog } from "@/components/profile/VerifiedInfoDialog";
@@ -219,6 +220,16 @@ export function ProfileView({
           <p className="mt-3 max-w-sm text-balance text-center text-sm" style={{ color: t.muted }}>
             {shownBio || profile.tagline}
           </p>
+        )}
+
+        {profile.show_total_reach && (profile.total_reach_count ?? 0) > 0 && (
+          <span
+            className="mt-3 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold"
+            style={{ border: `1px solid ${t.border}`, color: t.text }}
+          >
+            <Users className="h-3.5 w-3.5" aria-hidden />
+            {formatReach(profile.total_reach_count ?? 0)} bereik
+          </span>
         )}
 
         {bioLocales.length > 1 && (

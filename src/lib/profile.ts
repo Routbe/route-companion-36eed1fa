@@ -70,6 +70,9 @@ export interface ProfileRecord {
    * tijdens het laden van de profielpagina.
    */
   social_links?: PublicSocialLink[];
+  /** Totaal bereik-badge: gecacht totaal over alle sociale accounts. */
+  show_total_reach?: boolean;
+  total_reach_count?: number;
 }
 
 export type ProfileTier = "free" | "early_believer";

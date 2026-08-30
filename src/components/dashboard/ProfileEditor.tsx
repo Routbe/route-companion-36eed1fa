@@ -121,6 +121,7 @@ import {
 import { SubdomainPanel } from "@/components/dashboard/SubdomainPanel";
 import { BadgesPanel } from "@/components/dashboard/BadgesPanel";
 import { SocialVerifyPanel } from "@/components/dashboard/SocialVerifyPanel";
+import { TotalReachButton } from "@/components/dashboard/TotalReachModal";
 import { ReferralPanel } from "@/components/dashboard/ReferralPanel";
 import { ReferralAnalytics } from "@/components/dashboard/ReferralAnalytics";
 import { BadgeActivityPanel } from "@/components/dashboard/BadgeActivityPanel";
@@ -1017,6 +1018,14 @@ export function ProfileEditor() {
               </section>
 
               <SocialVerifyPanel handle={normalized || handle} />
+
+              <section className="space-y-3 rounded-2xl border border-border bg-card p-4 sm:p-5">
+                <h2 className="text-lg font-medium">Totaal bereik</h2>
+                <p className="text-sm text-muted-foreground">
+                  Toon één badge met je totale volgersaantal over al je gekoppelde accounts.
+                </p>
+                <TotalReachButton />
+              </section>
 
               {/* Eén bron van waarheid: QR-styling gebeurt in de generator. */}
               <section className="space-y-3 rounded-2xl border border-border bg-card p-4 sm:p-5">

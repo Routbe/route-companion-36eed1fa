@@ -129,6 +129,7 @@ import { EmailAliasDomains } from "@/components/dashboard/EmailAliasDomains";
 import { withAuthTimeout, authFailureMessage } from "@/lib/auth-timeout";
 import { oauthAvatarOf } from "@/lib/oauth-avatar";
 import { BlueskyWizard } from "@/components/dashboard/BlueskyWizard";
+import { BookingBlockSettings } from "@/components/dashboard/BookingBlockSettings";
 import { SocialHandleInput } from "@/components/SocialHandleInput";
 import { isHandleBlock } from "@/lib/social-handles";
 
@@ -873,7 +874,13 @@ export function ProfileEditor() {
 
                         {open && (
                           <div className="mt-3 space-y-2 border-t border-border pt-3">
-                            {isHandleBlock(b.kind) && b.kind !== "matrix" ? (
+                            {b.kind === "booking_request" ? (
+                              <BookingBlockSettings
+                                value={b.value}
+                                onChange={(value) => patch(b.id, { value })}
+                                onTitle={(label) => patch(b.id, { label })}
+                              />
+                            ) : isHandleBlock(b.kind) && b.kind !== "matrix" ? (
                               <>
                                 <SocialHandleInput
                                   kind={b.kind}

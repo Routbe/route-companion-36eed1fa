@@ -50,7 +50,7 @@ export async function resolvePostLoginPath(explicitRedirect?: string | null): Pr
     return destination;
   }
   if (handle === null) {
-    console.info("[post-login:destination] /claim");
+    console.info("[post-login:destination] /onboarding");
     return "/onboarding";
   }
   // Either genuinely no handle yet, or the profile could not be read at all:

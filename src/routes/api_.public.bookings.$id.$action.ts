@@ -20,7 +20,7 @@ function page(title: string, body: string, status: number): Response {
   );
 }
 
-export const Route = createFileRoute("/api/public/bookings/$id/$action")({
+export const Route = createFileRoute("/api_/public/bookings/$id/$action")({
   server: {
     handlers: {
       GET: async ({ request, params }) => {

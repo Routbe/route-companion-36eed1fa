@@ -90,6 +90,7 @@ import { Route as ApiPublicCronSyncSocialsRouteImport } from './routes/api_.publ
 import { Route as ApiPublicOgHandleRouteImport } from './routes/api_.public.og.$handle'
 import { Route as ApiPublicWebhooksBankingRouteImport } from './routes/api_.public.webhooks.banking'
 import { Route as ApiPublicAuthProviderCallbackRouteImport } from './routes/api_.public.auth.$provider.callback'
+import { Route as ApiPublicBookingsIdActionRouteImport } from './routes/api_.public.bookings.$id.$action'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -508,6 +509,12 @@ const ApiPublicAuthProviderCallbackRoute =
     path: '/callback',
     getParentRoute: () => ApiPublicAuthProviderRoute,
   } as any)
+const ApiPublicBookingsIdActionRoute =
+  ApiPublicBookingsIdActionRouteImport.update({
+    id: '/api_/public/bookings/$id/$action',
+    path: '/api/public/bookings/$id/$action',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -590,6 +597,7 @@ export interface FileRoutesByFullPath {
   '/api/public/og/$handle': typeof ApiPublicOgHandleRoute
   '/api/public/webhooks/banking': typeof ApiPublicWebhooksBankingRoute
   '/api/public/auth/$provider/callback': typeof ApiPublicAuthProviderCallbackRoute
+  '/api/public/bookings/$id/$action': typeof ApiPublicBookingsIdActionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -672,6 +680,7 @@ export interface FileRoutesByTo {
   '/api/public/og/$handle': typeof ApiPublicOgHandleRoute
   '/api/public/webhooks/banking': typeof ApiPublicWebhooksBankingRoute
   '/api/public/auth/$provider/callback': typeof ApiPublicAuthProviderCallbackRoute
+  '/api/public/bookings/$id/$action': typeof ApiPublicBookingsIdActionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -756,6 +765,7 @@ export interface FileRoutesById {
   '/api_/public/og/$handle': typeof ApiPublicOgHandleRoute
   '/api_/public/webhooks/banking': typeof ApiPublicWebhooksBankingRoute
   '/api_/public/auth/$provider/callback': typeof ApiPublicAuthProviderCallbackRoute
+  '/api_/public/bookings/$id/$action': typeof ApiPublicBookingsIdActionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -840,6 +850,7 @@ export interface FileRouteTypes {
     | '/api/public/og/$handle'
     | '/api/public/webhooks/banking'
     | '/api/public/auth/$provider/callback'
+    | '/api/public/bookings/$id/$action'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -922,6 +933,7 @@ export interface FileRouteTypes {
     | '/api/public/og/$handle'
     | '/api/public/webhooks/banking'
     | '/api/public/auth/$provider/callback'
+    | '/api/public/bookings/$id/$action'
   id:
     | '__root__'
     | '/'
@@ -1005,6 +1017,7 @@ export interface FileRouteTypes {
     | '/api_/public/og/$handle'
     | '/api_/public/webhooks/banking'
     | '/api_/public/auth/$provider/callback'
+    | '/api_/public/bookings/$id/$action'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1064,6 +1077,7 @@ export interface RootRouteChildren {
   ApiPublicCronSyncSocialsRoute: typeof ApiPublicCronSyncSocialsRoute
   ApiPublicOgHandleRoute: typeof ApiPublicOgHandleRoute
   ApiPublicWebhooksBankingRoute: typeof ApiPublicWebhooksBankingRoute
+  ApiPublicBookingsIdActionRoute: typeof ApiPublicBookingsIdActionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1635,6 +1649,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicAuthProviderCallbackRouteImport
       parentRoute: typeof ApiPublicAuthProviderRoute
     }
+    '/api_/public/bookings/$id/$action': {
+      id: '/api_/public/bookings/$id/$action'
+      path: '/api/public/bookings/$id/$action'
+      fullPath: '/api/public/bookings/$id/$action'
+      preLoaderRoute: typeof ApiPublicBookingsIdActionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -1835,6 +1856,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicCronSyncSocialsRoute: ApiPublicCronSyncSocialsRoute,
   ApiPublicOgHandleRoute: ApiPublicOgHandleRoute,
   ApiPublicWebhooksBankingRoute: ApiPublicWebhooksBankingRoute,
+  ApiPublicBookingsIdActionRoute: ApiPublicBookingsIdActionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -25,6 +25,7 @@ import { Route as GoRouteImport } from './routes/go'
 import { Route as HubRouteImport } from './routes/hub'
 import { Route as IbanQrRouteImport } from './routes/iban-qr'
 import { Route as ManifestoRouteImport } from './routes/manifesto'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QrRouteImport } from './routes/qr'
 import { Route as SelfHostingRouteImport } from './routes/self-hosting'
@@ -169,6 +170,11 @@ const IbanQrRoute = IbanQrRouteImport.update({
 const ManifestoRoute = ManifestoRouteImport.update({
   id: '/manifesto',
   path: '/manifesto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -532,6 +538,7 @@ export interface FileRoutesByFullPath {
   '/hub': typeof HubRoute
   '/iban-qr': typeof IbanQrRoute
   '/manifesto': typeof ManifestoRoute
+  '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/qr': typeof QrRoute
   '/self-hosting': typeof SelfHostingRoute
@@ -615,6 +622,7 @@ export interface FileRoutesByTo {
   '/hub': typeof HubRoute
   '/iban-qr': typeof IbanQrRoute
   '/manifesto': typeof ManifestoRoute
+  '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/qr': typeof QrRoute
   '/self-hosting': typeof SelfHostingRoute
@@ -700,6 +708,7 @@ export interface FileRoutesById {
   '/hub': typeof HubRoute
   '/iban-qr': typeof IbanQrRoute
   '/manifesto': typeof ManifestoRoute
+  '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/qr': typeof QrRoute
   '/self-hosting': typeof SelfHostingRoute
@@ -785,6 +794,7 @@ export interface FileRouteTypes {
     | '/hub'
     | '/iban-qr'
     | '/manifesto'
+    | '/onboarding'
     | '/privacy'
     | '/qr'
     | '/self-hosting'
@@ -868,6 +878,7 @@ export interface FileRouteTypes {
     | '/hub'
     | '/iban-qr'
     | '/manifesto'
+    | '/onboarding'
     | '/privacy'
     | '/qr'
     | '/self-hosting'
@@ -952,6 +963,7 @@ export interface FileRouteTypes {
     | '/hub'
     | '/iban-qr'
     | '/manifesto'
+    | '/onboarding'
     | '/privacy'
     | '/qr'
     | '/self-hosting'
@@ -1037,6 +1049,7 @@ export interface RootRouteChildren {
   HubRoute: typeof HubRoute
   IbanQrRoute: typeof IbanQrRoute
   ManifestoRoute: typeof ManifestoRoute
+  OnboardingRoute: typeof OnboardingRoute
   PrivacyRoute: typeof PrivacyRoute
   QrRoute: typeof QrRoute
   SelfHostingRoute: typeof SelfHostingRoute
@@ -1192,6 +1205,13 @@ declare module '@tanstack/react-router' {
       path: '/manifesto'
       fullPath: '/manifesto'
       preLoaderRoute: typeof ManifestoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -1816,6 +1836,7 @@ const rootRouteChildren: RootRouteChildren = {
   HubRoute: HubRoute,
   IbanQrRoute: IbanQrRoute,
   ManifestoRoute: ManifestoRoute,
+  OnboardingRoute: OnboardingRoute,
   PrivacyRoute: PrivacyRoute,
   QrRoute: QrRoute,
   SelfHostingRoute: SelfHostingRoute,

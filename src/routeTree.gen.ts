@@ -87,6 +87,7 @@ import { Route as ApiPublicBadgeHandleRouteImport } from './routes/api_.public.b
 import { Route as ApiPublicCronCheckDnsRouteImport } from './routes/api_.public.cron.check-dns'
 import { Route as ApiPublicCronScanTransfersRouteImport } from './routes/api_.public.cron.scan-transfers'
 import { Route as ApiPublicCronSecureshieldBillingRouteImport } from './routes/api_.public.cron.secureshield-billing'
+import { Route as ApiPublicCronSyncFollowersRouteImport } from './routes/api_.public.cron.sync-followers'
 import { Route as ApiPublicCronSyncSocialsRouteImport } from './routes/api_.public.cron.sync-socials'
 import { Route as ApiPublicOgHandleRouteImport } from './routes/api_.public.og.$handle'
 import { Route as ApiPublicWebhooksBankingRouteImport } from './routes/api_.public.webhooks.banking'
@@ -492,6 +493,12 @@ const ApiPublicCronSecureshieldBillingRoute =
     path: '/api/public/cron/secureshield-billing',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicCronSyncFollowersRoute =
+  ApiPublicCronSyncFollowersRouteImport.update({
+    id: '/api_/public/cron/sync-followers',
+    path: '/api/public/cron/sync-followers',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicCronSyncSocialsRoute =
   ApiPublicCronSyncSocialsRouteImport.update({
     id: '/api_/public/cron/sync-socials',
@@ -600,6 +607,7 @@ export interface FileRoutesByFullPath {
   '/api/public/cron/check-dns': typeof ApiPublicCronCheckDnsRoute
   '/api/public/cron/scan-transfers': typeof ApiPublicCronScanTransfersRoute
   '/api/public/cron/secureshield-billing': typeof ApiPublicCronSecureshieldBillingRoute
+  '/api/public/cron/sync-followers': typeof ApiPublicCronSyncFollowersRoute
   '/api/public/cron/sync-socials': typeof ApiPublicCronSyncSocialsRoute
   '/api/public/og/$handle': typeof ApiPublicOgHandleRoute
   '/api/public/webhooks/banking': typeof ApiPublicWebhooksBankingRoute
@@ -684,6 +692,7 @@ export interface FileRoutesByTo {
   '/api/public/cron/check-dns': typeof ApiPublicCronCheckDnsRoute
   '/api/public/cron/scan-transfers': typeof ApiPublicCronScanTransfersRoute
   '/api/public/cron/secureshield-billing': typeof ApiPublicCronSecureshieldBillingRoute
+  '/api/public/cron/sync-followers': typeof ApiPublicCronSyncFollowersRoute
   '/api/public/cron/sync-socials': typeof ApiPublicCronSyncSocialsRoute
   '/api/public/og/$handle': typeof ApiPublicOgHandleRoute
   '/api/public/webhooks/banking': typeof ApiPublicWebhooksBankingRoute
@@ -770,6 +779,7 @@ export interface FileRoutesById {
   '/api_/public/cron/check-dns': typeof ApiPublicCronCheckDnsRoute
   '/api_/public/cron/scan-transfers': typeof ApiPublicCronScanTransfersRoute
   '/api_/public/cron/secureshield-billing': typeof ApiPublicCronSecureshieldBillingRoute
+  '/api_/public/cron/sync-followers': typeof ApiPublicCronSyncFollowersRoute
   '/api_/public/cron/sync-socials': typeof ApiPublicCronSyncSocialsRoute
   '/api_/public/og/$handle': typeof ApiPublicOgHandleRoute
   '/api_/public/webhooks/banking': typeof ApiPublicWebhooksBankingRoute
@@ -856,6 +866,7 @@ export interface FileRouteTypes {
     | '/api/public/cron/check-dns'
     | '/api/public/cron/scan-transfers'
     | '/api/public/cron/secureshield-billing'
+    | '/api/public/cron/sync-followers'
     | '/api/public/cron/sync-socials'
     | '/api/public/og/$handle'
     | '/api/public/webhooks/banking'
@@ -940,6 +951,7 @@ export interface FileRouteTypes {
     | '/api/public/cron/check-dns'
     | '/api/public/cron/scan-transfers'
     | '/api/public/cron/secureshield-billing'
+    | '/api/public/cron/sync-followers'
     | '/api/public/cron/sync-socials'
     | '/api/public/og/$handle'
     | '/api/public/webhooks/banking'
@@ -1025,6 +1037,7 @@ export interface FileRouteTypes {
     | '/api_/public/cron/check-dns'
     | '/api_/public/cron/scan-transfers'
     | '/api_/public/cron/secureshield-billing'
+    | '/api_/public/cron/sync-followers'
     | '/api_/public/cron/sync-socials'
     | '/api_/public/og/$handle'
     | '/api_/public/webhooks/banking'
@@ -1087,6 +1100,7 @@ export interface RootRouteChildren {
   ApiPublicCronCheckDnsRoute: typeof ApiPublicCronCheckDnsRoute
   ApiPublicCronScanTransfersRoute: typeof ApiPublicCronScanTransfersRoute
   ApiPublicCronSecureshieldBillingRoute: typeof ApiPublicCronSecureshieldBillingRoute
+  ApiPublicCronSyncFollowersRoute: typeof ApiPublicCronSyncFollowersRoute
   ApiPublicCronSyncSocialsRoute: typeof ApiPublicCronSyncSocialsRoute
   ApiPublicOgHandleRoute: typeof ApiPublicOgHandleRoute
   ApiPublicWebhooksBankingRoute: typeof ApiPublicWebhooksBankingRoute
@@ -1641,6 +1655,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicCronSecureshieldBillingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api_/public/cron/sync-followers': {
+      id: '/api_/public/cron/sync-followers'
+      path: '/api/public/cron/sync-followers'
+      fullPath: '/api/public/cron/sync-followers'
+      preLoaderRoute: typeof ApiPublicCronSyncFollowersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api_/public/cron/sync-socials': {
       id: '/api_/public/cron/sync-socials'
       path: '/api/public/cron/sync-socials'
@@ -1874,6 +1895,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicCronCheckDnsRoute: ApiPublicCronCheckDnsRoute,
   ApiPublicCronScanTransfersRoute: ApiPublicCronScanTransfersRoute,
   ApiPublicCronSecureshieldBillingRoute: ApiPublicCronSecureshieldBillingRoute,
+  ApiPublicCronSyncFollowersRoute: ApiPublicCronSyncFollowersRoute,
   ApiPublicCronSyncSocialsRoute: ApiPublicCronSyncSocialsRoute,
   ApiPublicOgHandleRoute: ApiPublicOgHandleRoute,
   ApiPublicWebhooksBankingRoute: ApiPublicWebhooksBankingRoute,

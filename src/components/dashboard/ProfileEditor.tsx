@@ -871,21 +871,46 @@ export function ProfileEditor() {
 
                         {open && (
                           <div className="mt-3 space-y-2 border-t border-border pt-3">
-                            <Input
-                              className="input-field h-11 rounded-xl"
-                              placeholder={BLOCK_KINDS.find((k) => k.kind === b.kind)?.placeholder}
-                              value={b.value}
-                              maxLength={400}
-                              onChange={(e) => patch(b.id, { value: e.target.value })}
-                            />
-                            <p className="text-[11px] text-muted-foreground">
-                              {hint.prefix && (
-                                <span className="mr-1 font-mono text-foreground">
-                                  {hint.prefix}
-                                </span>
-                              )}
-                              {hint.help}
-                            </p>
+                            {isHandleBlock(b.kind) && b.kind !== "matrix" ? (
+                              <>
+                                <SocialHandleInput
+                                  kind={b.kind}
+                                  label={b.label}
+                                  value={b.value}
+                                  onChange={(handle) => patch(b.id, { value: handle })}
+                                  placeholder={
+                                    BLOCK_KINDS.find((k) => k.kind === b.kind)?.placeholder?.replace(
+                                      /^@/,
+                                      "",
+                                    ) ?? "username"
+                                  }
+                                />
+                                <p className="text-[11px] text-muted-foreground">
+                                  Enter just your handle — paste a full link and we extract the
+                                  username automatically.
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <Input
+                                  className="input-field h-11 rounded-xl"
+                                  placeholder={
+                                    BLOCK_KINDS.find((k) => k.kind === b.kind)?.placeholder
+                                  }
+                                  value={b.value}
+                                  maxLength={400}
+                                  onChange={(e) => patch(b.id, { value: e.target.value })}
+                                />
+                                <p className="text-[11px] text-muted-foreground">
+                                  {hint.prefix && (
+                                    <span className="mr-1 font-mono text-foreground">
+                                      {hint.prefix}
+                                    </span>
+                                  )}
+                                  {hint.help}
+                                </p>
+                              </>
+                            )}
                             {isPromoBlock(b.kind) && (
                               <div className="space-y-2 rounded-xl border border-border/60 bg-background p-3">
                                 <p className="text-[11px] font-medium text-foreground">

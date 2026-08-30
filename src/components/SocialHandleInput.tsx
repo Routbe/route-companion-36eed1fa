@@ -1,4 +1,4 @@
-import { SocialPlatformIcon } from "@/components/SocialIcons";
+import { SocialPlatformIcon } from "@/lib/social-icons";
 import { extractHandle, handlePrefix } from "@/lib/social-handles";
 import { brandOf } from "@/lib/profile";
 import { cn } from "@/lib/utils";

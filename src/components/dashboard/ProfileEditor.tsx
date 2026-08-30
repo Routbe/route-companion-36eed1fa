@@ -129,6 +129,8 @@ import { EmailAliasDomains } from "@/components/dashboard/EmailAliasDomains";
 import { withAuthTimeout, authFailureMessage } from "@/lib/auth-timeout";
 import { oauthAvatarOf } from "@/lib/oauth-avatar";
 import { BlueskyWizard } from "@/components/dashboard/BlueskyWizard";
+import { SocialHandleInput } from "@/components/SocialHandleInput";
+import { isHandleBlock } from "@/lib/social-handles";
 
 type StudioTab = "links" | "design" | "analytics" | "identity" | "settings";
 
